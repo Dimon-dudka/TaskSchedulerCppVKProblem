@@ -1,5 +1,4 @@
 //--------------------------------------------------------------------------------------------
-//  03.11.2024
 //  Made by Dmitrii Dudin
 //  VK Tech Backend Problem
 //--------------------------------------------------------------------------------------------
@@ -36,7 +35,6 @@ private:
 
     std::priority_queue<ScheduledTask,std::vector<ScheduledTask>
             , std::greater<>> tasks;
-
     std::mutex scheduling_mutex;
     std::condition_variable scheduling_cv;
     std::thread worker_thread;

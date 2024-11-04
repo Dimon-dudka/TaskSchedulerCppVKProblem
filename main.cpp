@@ -1,5 +1,4 @@
 //--------------------------------------------------------------------------------------------
-//  03.11.2024
 //  Made by Dmitrii Dudin
 //  VK Tech Backend Problem
 //--------------------------------------------------------------------------------------------
@@ -12,10 +11,11 @@ int main() {
     TaskScheduler task_scheduler;
 
     //  TaskScheduler usage example
+    //  May be replaced with another check
     std::vector<std::thread> threads;
     for (int i = 0; i < 10; i++) {
         threads.push_back(std::thread([i, &task_scheduler]() {
-            for (int j = 0; j < 10; ++j) {
+            for (int j = 0; j < 100; ++j) {
                 task_scheduler.add([i, j]() {
                     std::cout << "Thread number: " << i << " | " << "Task number: " << j << std::endl;
                 }, std::time(nullptr) + rand() * i % 10);
