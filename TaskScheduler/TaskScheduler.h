@@ -39,5 +39,5 @@ private:
     std::condition_variable scheduling_cv;
     std::thread worker_thread;
     std::time_t start_timestamp, time_for_sleep;
-    bool b_is_running;
+    std::atomic_bool b_is_running;
 };

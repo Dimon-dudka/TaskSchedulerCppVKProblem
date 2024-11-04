@@ -12,10 +12,10 @@ TaskScheduler::TaskScheduler() : b_is_running(true), start_timestamp(std::time(n
 }
 
 TaskScheduler::~TaskScheduler()
-{ {
-		std::scoped_lock lock(scheduling_mutex);
-		b_is_running = false;
-	}
+{
+	b_is_running = false;
+
+	std::scoped_lock lock(scheduling_mutex);
 
 	scheduling_cv.notify_all();
 	worker_thread.join();
@@ -23,10 +23,10 @@ TaskScheduler::~TaskScheduler()
 
 void TaskScheduler::add(std::function<void()> _task, std::time_t _timestep)
 {
-	std::scoped_lock lock(scheduling_mutex);
-
 	if (!b_is_running)
 		return;
+
+	std::scoped_lock lock(scheduling_mutex);
 
 	tasks.emplace(ScheduledTask({_task, _timestep}));
 	compare_new_timestep(_timestep);
